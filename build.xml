@@ -1,5 +1,5 @@
 <project name="robot" default="dist" basedir=".">
-    <property name="version" value="Kikut0.00"/>
+    <property name="version" value="0.Kikut.0"/>
     <description>
         build file for robocode Kikut
     </description>
@@ -40,7 +40,7 @@
         <copy file="src/pl/sternik/mj/robocode/Kikut.properties"
               todir="out/pl/sternik/mj/robocode" />
         <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-        <jar jarfile="${dist}/rudy102_${version}.jar" basedir="${build}"/>
+        <jar jarfile="${dist}/kikut_${version}.jar" basedir="${build}"/>
     </target>
 
     <target name="clean"
