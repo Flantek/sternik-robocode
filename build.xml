@@ -1,0 +1,52 @@
+<project name="robot" default="dist" basedir=".">
+    <property name="version" value="Kikut0.00"/>
+    <description>
+        build file for robocode Kikut
+    </description>
+    <!-- set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="out"/>
+    <property name="dist" location="release"/>
+
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}"/>
+    </target>
+
+    <path id="classpath">
+        <fileset dir="${basedir}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="compile" depends="init"
+            description="compile the source">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}" destdir="${build}">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="compile">
+        <!-- no tests ;) -->
+    </target>
+
+    <target name="dist" depends="compile"
+            description="generate the distribution">
+        <!-- Create the distribution directory -->
+        <mkdir dir="${dist}"/>
+        <copy file="src/pl/sternik/mj/robocode/Kikut.properties"
+              todir="out/pl/sternik/mj/robocode" />
+        <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+        <jar jarfile="${dist}/rudy102_${version}.jar" basedir="${build}"/>
+    </target>
+
+    <target name="clean"
+            description="clean up">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+</project>
